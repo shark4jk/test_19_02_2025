@@ -217,8 +217,8 @@ const dice = {
                 winner = target;
                 loser = initiator;
             } else {
-                target.outputChatBox(`Вы сыграли в ничью`);
-                initiator.outputChatBox(`Вы сыграли в ничью`);
+                target.outputChatBox(`Вы сыграли в ничью (${targetCount} vs ${senderCount})`);
+                initiator.outputChatBox(`Вы сыграли в ничью (${targetCount} vs ${senderCount})`);
                 isDraw = true;
             }
 
@@ -226,21 +226,12 @@ const dice = {
                 money.pay(loser, 'remove', offer.amount);
                 money.pay(winner, 'add', offer.amount);
 
-                winner.outputChatBox(`Поздравляем, вы выиграли!`);
-                loser.outputChatBox(`К сожалению, вы проиграли!`);
-            }
-
-            const data = {
-                senderName: initiator.name,
-                senderId: initiator.id,
-                senderCount: senderCount,
-                targetName: target.name,
-                targetId: target.id,
-                targetCount: targetCount
+                winner.outputChatBox(`Поздравляем, вы выиграли! (${targetCount} vs ${senderCount})`);
+                loser.outputChatBox(`К сожалению, вы проиграли! (${targetCount} vs ${senderCount})`);
             }
 
             winner.call('client::dice.showResult', ['win']);
-            loser.call('client::dice.shoResult', ['lose']);
+            loser.call('client::dice.showResult', ['lose']);
 
             initiator.hasActiveDiceOffer = false;
             delete target.diceOffer;
@@ -249,6 +240,11 @@ const dice = {
         }
     },
 
+    /**
+     * @param min {number}
+     * @param max {number}
+     * @returns {number}
+     */
     randomInteger(min, max) {
         return Math.round(min + Math.random() * (max - min));
     }

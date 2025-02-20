@@ -7,7 +7,7 @@
       <div class="menu-content">
         <p class="offer-text">Вы предлагаете {{ diceStore.targetName }} сыграть в кости на</p>
         <div class="input-group">
-          <input type="number" class="bet-input" v-model="diceStore.betValue" placeholder="0"/>
+          <input type="number" class="bet-input"  v-model="diceStore.betValue" placeholder="0"/>
           <button class="bet-button" @click="diceStore.placeBet()">Сделать ставку</button>
         </div>
         <h2 class="game-title">Игра в кости (F2 курсор)</h2>
@@ -27,7 +27,7 @@
 
     <div class="result-overlay" v-if="diceStore.showResult">
       <div class="result-modal">
-        <h3 class="result-title">{{ diceStore.getResultTitle() }}</h3>
+        <h3 class="result-title" :style="{ color: diceStore.getResultColor() }">{{ diceStore.getResultTitle() }}</h3>
       </div>
     </div>
   </div>
@@ -58,28 +58,14 @@ onMounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
 
-.result-modal {
-  background: #BEBEBE;
-  padding: 2rem;
-  border-radius: 15px;
-  text-align: center;
-  max-width: 300px;
-  width: 90%;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-}
-
 .result-title {
-  font-family: 'Mazzard';
-  font-size: 24px;
-  color: #FFFFFF;
-  margin-bottom: 1.5rem;
+  font-size: 74px;
 }
 
 .close-btn {
@@ -149,8 +135,13 @@ onMounted(() => {
   gap: 8px;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .bet-input {
-  width: 100%;
   height: 25px;
   background: #d9d9d9;
   border: 1px solid #fff7f7;
@@ -162,12 +153,17 @@ onMounted(() => {
 .bet-button {
   width: 100%;
   height: 25px;
-  background: #c03737;
+  background: #b11d1d;
   border: 1px solid #f70808;
   border-radius: 4px;
   color: #ffffff;
   font-size: 14px;
   cursor: pointer;
+}
+
+.bet-button:hover {
+  background: #e42323;
+  border: 1px solid #f70808;
 }
 
 .game-title {
@@ -178,7 +174,7 @@ onMounted(() => {
 
 .confirmation {
   position: fixed;
-  bottom: 20px;
+  bottom: 320px;
   left: 20px;
   right: 20px;
   max-width: 360px;
@@ -216,6 +212,10 @@ onMounted(() => {
   flex: 1;
 }
 
+.decline-btn:hover {
+  background: #d81616;
+}
+
 .accept-btn {
   background: #19d24a;
   border: 1px solid #72e064;
@@ -224,6 +224,10 @@ onMounted(() => {
   border-radius: 4px;
   cursor: pointer;
   flex: 1;
+}
+
+.accept-btn:hover {
+  background: #00ff46;
 }
 
 @media (max-width: 768px) {

@@ -1,15 +1,14 @@
 import { defineStore } from 'pinia';
-import {type} from "node:os";
 
 export const DiceStore = defineStore('interface_dice', {
     state: () => ({
-        showMenu: true,
+        showMenu: false,
         showNoty: false,
-        showResult: false,
+        showResult: true,
 
-        targetName: null,
+        targetName: 'Dorathy Stark',
         targetId: null,
-        initiatorName: null,
+        initiatorName: 'Dorathy Stark',
 
         result: 'lose',
         callBet: 0,
@@ -83,5 +82,15 @@ export const DiceStore = defineStore('interface_dice', {
                 return 'Ничья!';
             }
         },
+
+        getResultColor() {
+            if (this.result === 'win') {
+                return '#00ff00';
+            } else if (this.result === 'lose') {
+                return '#ff0000';
+            } else {
+                return '#ffdd00';
+            }
+        }
     }
 });

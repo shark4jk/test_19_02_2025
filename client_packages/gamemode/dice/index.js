@@ -14,6 +14,8 @@ class Dice {
 
             mp.events.add('client::dice.showMenu', this.showMenu.bind(this));
 
+            mp.events.add('client::dice.showResult', this.showResult.bind(this));
+
             mp.events.add('client::dice.placeBet', this.placeBet.bind(this));
 
             mp.events.add('client::dice.decline', this.decline.bind(this));
@@ -44,6 +46,10 @@ class Dice {
         }
     }
 
+    showResult(state) {
+        this.browser.call('cef::dice.show', 'result', state);
+    }
+
     /**
      * @param targetName {string}
      * @param targetId {number}
@@ -51,7 +57,6 @@ class Dice {
     showMenu(targetName, targetId) {
         try {
             this.inMenu = true;
-            mp.console.logInfo('XX ' + targetName + ' ' + targetId);
             this.browser.call('cef::dice.show', 'menu', targetName, targetId);
         } catch (e) {
             mp.events.callRemote('try_catch', 'dice', 'events', e);

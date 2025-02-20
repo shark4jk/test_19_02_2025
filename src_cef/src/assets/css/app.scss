@@ -1,5 +1,0 @@
-@import "./interfaces/dice";
-
-@function pxtovh($pxsize) {
-  @return $pxsize / (1080 * 0.01) + vh;
-}
