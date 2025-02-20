@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@ragempcommunity/types-client": "^2.1.9",
+    "@ragempcommunity/types-server": "^2.1.9",
+    "@types/node": "^20.1.3"
+  }
+}
