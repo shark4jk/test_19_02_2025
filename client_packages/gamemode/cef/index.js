@@ -31,9 +31,7 @@ class UI {
             return;
         }
 
-        mp.events.call('client::ui.ready');
+        mp.events.call('client::ui.ready', browser);
     }
 }
 const ui = new UI('package://ui/index.html');
-
-global.cef = ui.browser;

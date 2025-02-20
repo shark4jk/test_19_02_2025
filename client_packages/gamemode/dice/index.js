@@ -2,8 +2,17 @@
 class Dice {
     constructor() {
         this.inGame = false;
+        this.inMenu = false;
+        mp.events.add('client::ui.ready', (_) => this.browser = _);
 
-        this.browser = global.cef;
+        mp.keys.bind(27, true, function() {
+            if (!this.inMenu) {
+                return;
+            }
+
+            this.inMenu = false;
+            this.browser.call('cef::dice.hide');
+        });
 
         this.events();
     }

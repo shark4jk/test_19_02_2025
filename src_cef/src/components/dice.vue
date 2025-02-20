@@ -41,7 +41,12 @@ const diceStore = DiceStore();
 
 onMounted(() => {
   if (typeof mp !== 'undefined') {
-    mp.events.add('cef::dice.show', (menu, value, value2 = null) => diceStore.open(menu, value, value2));
+    mp.events.add('cef::dice.show', (menu, value, value2 = null) => {
+      diceStore.open(menu, value, value2)
+    });
+    mp.events.add('cef::dice.hide', () => {
+      diceStore.showMenu = false;
+    });
   }
 });
 
@@ -97,7 +102,6 @@ onMounted(() => {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background: #ffffff;
   font-family: 'Mazzard', sans-serif;
 }
 

@@ -63,12 +63,12 @@ const dice = {
         }
 
         if (money.get(initiator) < betValue) {
-            initiator.outputChatBox('У вас недостаточно денег на минимальную ставку!');
+            initiator.outputChatBox('У вас недостаточно денег ставку!');
             return;
         }
 
         if (money.get(target) < betValue) {
-            initiator.outputChatBox('У игрока недостаточно денег на минимальную ставку!');
+            initiator.outputChatBox('У игрока недостаточно денег!');
             return;
         }
 

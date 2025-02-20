@@ -4,7 +4,7 @@ export const DiceStore = defineStore('interface_dice', {
     state: () => ({
         showMenu: false,
         showNoty: false,
-        showResult: true,
+        showResult: false,
 
         targetName: 'Dorathy Stark',
         targetId: null,
